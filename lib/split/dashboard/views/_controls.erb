@@ -1,9 +1,9 @@
-<% if experiment.has_winner? %>
+<% if experiment.has_winner? && params[:admin] == 'true' %>
   <form action="<%= url "/reopen/#{experiment.name}" %>" method='post' onclick="return confirmReopen()">
     <input type="submit" value="Reopen Experiment">
   </form>
 <% end %>
-<% if experiment.start_time %>
+<% if experiment.start_time && params[:admin] == 'true'  %>
   <form action="<%= url "/reset/#{experiment.name}" %>" method='post' onclick="return confirmReset()">
     <input type="submit" value="Reset Data">
   </form>
@@ -12,7 +12,9 @@
     <input type="submit" value="Start">
   </form>
 <% end %>
-<form action="<%= url "/#{experiment.name}" %>" method='post' onclick="return confirmDelete()">
-  <input type="hidden" name="_method" value="delete"/>
-  <input type="submit" value="Delete" class="red">
-</form>
+<% if params[:admin] == 'true' %> 
+  <form action="<%= url "/#{experiment.name}" %>" method='post' onclick="return confirmDelete()">
+    <input type="hidden" name="_method" value="delete"/>
+    <input type="submit" value="Delete" class="red">
+  </form>
+<% end %>
