@@ -1,5 +1,5 @@
-<% if @experiments.any? %>
-  <p class="intro">aThe list below contains all the registered experiments along with the number of test participants, completed and conversion rate currently in the system.</p>
+<% if @experiments.any? && spree_current_user.has_spree_role?("admin") %>
+  <p class="intro">The list below contains all the registered experiments along with the number of test participants, completed and conversion rate currently in the system.</p>
 
   <% @experiments.each do |experiment| %>
     <% if experiment.goals.empty? %>
