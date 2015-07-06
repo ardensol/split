@@ -90,6 +90,7 @@
           </div>
         </td>        
         <td>
+        <% if params[:admin] == 'true' %>  
           <% if experiment.has_winner? %>
             <% if experiment.winner.name == alternative.name %>
               Winner
@@ -102,6 +103,7 @@
               <input type="submit" value="Use this" class="green">
             </form>
           <% end %>
+        <% end %>
         </td>
       </tr>
 
